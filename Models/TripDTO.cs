@@ -9,6 +9,10 @@
 
         public int MaxPeople { get; set; }
 
+        //kolekcje krajow i klientow
+        public IEnumerable<CountryDTO> Countries { get; set; }
+        public IEnumerable<ClientDTO> Clients { get; set; }
+
         //public virtual
 
     }

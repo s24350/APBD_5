@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Zadanie7.ContextModels;
+using Zadanie7.Interfaces;
+using Zadanie7.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
@@ -6,6 +13,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<S24350Context>();
+builder.Services.AddTransient<ITripsRepository, TripRepository>();
+
 
 var app = builder.Build();
 

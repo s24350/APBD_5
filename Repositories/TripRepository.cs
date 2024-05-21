@@ -1,4 +1,5 @@
-﻿using Zadanie7.ContextModels;
+﻿using Microsoft.EntityFrameworkCore;
+using Zadanie7.ContextModels;
 using Zadanie7.Interfaces;
 using Zadanie7.Models;
 
@@ -12,27 +13,27 @@ namespace Zadanie7.Repositories
             _context = context;
         }
 
-        public Task<IEnumerable<TripDTO>> GetTripsAsync() {
-            var result = _context
+        public async Task<IEnumerable<TripDTO>> GetTripsAsync() {
+           
+            var result = await _context
                 .Trips
                 .Select(e =>
                 new TripDTO
                 {
+                    //precyzuje tu interesujacy mnie format
                     Name = e.Name,
                     Description = e.Description,
                     DateFrom = e.DateFrom,
                     DateTo = e.DateTo,
                     MaxPeople = e.MaxPeople,
                     Countries = e.IdCountries
-                  .Select(e =>
-                  new CountryDTO
-                  {
-                      Name = e.Name
-                  }),
-                    Clients = e.ClientsTrips
-                    .Select
-                });
-               
+                        .Select(e =>
+                        new CountryDTO {Name = e.Name}),
+                    Clients = e.ClientTrips
+                        .Select(e=> new ClientDTO { FirstName = e.IdClientNavigation.FirstName, LastName = e.IdClientNavigation.LastName})
+                }).ToListAsync();
+            
+            return result;
         }
 
     }

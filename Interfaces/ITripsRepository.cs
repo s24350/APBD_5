@@ -1,7 +1,10 @@
-﻿namespace Zadanie7.Interfaces
+﻿using Zadanie7.Models;
+
+namespace Zadanie7.Interfaces
 {
     public interface ITripsRepository
     {
-        Task<IEnumerable<Models.TripDTO>> GetTripsAsync();
+        Task<IEnumerable<TripDTO>> GetTripsAsync();
+
     }
 }
