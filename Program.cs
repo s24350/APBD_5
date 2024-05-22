@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<S24350Context>();
 builder.Services.AddTransient<ITripsRepository, TripRepository>();
+builder.Services.AddTransient<IClientRepository, ClientRepository>();
 
 
 var app = builder.Build();
