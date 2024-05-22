@@ -1,4 +1,5 @@
-﻿using Zadanie7.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Zadanie7.Models;
 
 namespace Zadanie7.Interfaces
 {
@@ -6,5 +7,6 @@ namespace Zadanie7.Interfaces
     {
         Task<IEnumerable<TripDTO>> GetTripsAsync();
 
+        Task AddTripToClientAsync(int idTrip, AddTripToClientRequestDTO dto);
     }
 }
